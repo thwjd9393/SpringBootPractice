@@ -3,10 +3,14 @@ package com.airpass.test3.controller;
 import com.airpass.test3.entity.Board;
 import com.airpass.test3.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 public class BoardController {
@@ -37,6 +41,16 @@ public class BoardController {
         // 반환된 보더리스트를 list 라는 이름으로 보냄
 
         return "boardList";
+    }
+
+    @GetMapping("/board/list2")
+    public @ResponseBody
+    ResponseEntity<List<Board>> boardList2(Model model) {
+
+//        model.addAttribute("list", boardService.boardList());
+        // 반환된 보더리스트를 list 라는 이름으로 보냄
+
+        return ResponseEntity.ok(boardService.boardList());
     }
 
     @GetMapping("/board/boardView")
